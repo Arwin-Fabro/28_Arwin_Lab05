@@ -11,10 +11,14 @@ public class PlayerMovement : MonoBehaviour
     private int Coins;
     private int TotalCoins;
     public Text coinText;
+
+    private int nextSceneLoad;
+
     // Start is called before the first frame update
     void Start()
     {
         TotalCoins = GameObject.FindGameObjectsWithTag("Coins").Length;
+        nextSceneLoad = SceneManager.GetActiveScene().buildIndex + 1;
     }
 
     void Update()
@@ -38,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
             Destroy(other.gameObject);
             if (Coins == TotalCoins)
             {
-                SceneManager.LoadScene("Level2");
+                SceneManager.LoadScene(nextSceneLoad);
             }
         }
         if (other.gameObject.tag == "Obstacle")
